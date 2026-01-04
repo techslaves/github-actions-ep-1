@@ -13,12 +13,6 @@ jobs:
         run: echo "My secret is ${{ secrets.MY_API_KEY }}"
 
       - name: Bypass Masking (LEAK!)
-        # This converts the secret to base64, so GitHub's filter doesn't recognize it.
         run: |
-           RAW_SECRET="${{ secrets.MY_API_KEY }}"
-           ENCODED_SECRET=$(echo -n "$RAW_SECRET" | base64)
-           echo "The encoded string is: $ENCODED_SECRET"
-
-           echo "${{ secrets.MY_API_KEY }}" > connection_config.txt
-          
-           cat connection_config.txt
+          SECRET="${{ secrets.MY_API_KEY }}"
+          echo "$SECRET" | sed 's/./& /g'

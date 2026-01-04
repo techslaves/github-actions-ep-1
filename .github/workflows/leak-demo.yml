@@ -10,4 +10,6 @@ jobs:
 
       - name: Bypass Masking (LEAK!)
         # This converts the secret to base64, so GitHub's filter doesn't recognize it.
-        run: echo "${{ secrets.MY_API_KEY }}" | base64
+        run: |
+           ENCODED_SECRET=$(echo -n "$MY_API_KEY" | base64)
+           echo "The encoded string is: $ENCODED_SECRET"

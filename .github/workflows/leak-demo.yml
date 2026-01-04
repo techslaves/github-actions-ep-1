@@ -9,6 +9,9 @@ jobs:
   leak-job:
     runs-on: ubuntu-latest
     steps:   
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
       - name: Attempting to print secret (Masked)
         run: echo "My secret is ${{ secrets.MY_API_KEY }}"
 

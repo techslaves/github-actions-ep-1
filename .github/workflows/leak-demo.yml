@@ -1,7 +1,5 @@
 name: Security Leak Demo
-on: 
-  pull_request_target:
-    types: [opened]
+on: [push]
 
 permissions:
   contents: write

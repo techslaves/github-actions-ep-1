@@ -1,5 +1,9 @@
 name: Security Leak Demo
-on: [push]
+on:
+  pull_request:
+    # Triggers on all pull request activity types by default
+    # You can specify specific activity types with the 'types' keyword
+    types: [opened]
 
 permissions:
   contents: write

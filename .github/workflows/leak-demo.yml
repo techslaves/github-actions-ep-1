@@ -1,7 +1,7 @@
 name: Security Leak Demo
-on: 
+on:
   pull_request:
-    types: [opened]
+    types: [opened,reopened, synchronize, labeled, review_requested]
 
 permissions:
   contents: write

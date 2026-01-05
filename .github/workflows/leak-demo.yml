@@ -1,9 +1,5 @@
 name: Security Leak Demo
 on: [push]
-
-permissions:
-  contents: write
-  id-token: write
   
 jobs:
   leak-job:

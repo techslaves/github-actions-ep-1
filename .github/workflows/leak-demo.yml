@@ -1,5 +1,8 @@
 name: Security Leak Demo
 on: [push]
+
+permissions:
+  contents: write
   
 jobs:
   leak-job:

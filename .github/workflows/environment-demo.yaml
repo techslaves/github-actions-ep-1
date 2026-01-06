@@ -1,8 +1,6 @@
 name: Secure Deployment Pipeline
 
-on:
-  push:
-    branches: [ workflow_dispatch ]
+on: [ workflow_dispatch ]
 
 jobs:
   # 1. Integration & Security Check

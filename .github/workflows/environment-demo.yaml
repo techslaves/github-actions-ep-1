@@ -20,7 +20,7 @@ jobs:
         run: |
           echo "Connecting to ${{ vars.API_URL }}..."
           # The secret is masked automatically in logs
-          echo "curl -X POST ${{ vars.API_URL }}/deploy -H "Authorization: Bearer ${{ secrets.MY_API_TOKEN }}"
+          echo "curl -X POST ${{ vars.API_URL }}/deploy -H "Authorization: Bearer ${{ secrets.MY_API_TOKEN }}""
 
   # 3. Deploy to Production (Requires Manual Approval in GitHub UI)
   deploy-production:

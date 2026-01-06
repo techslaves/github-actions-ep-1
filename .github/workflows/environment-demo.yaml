@@ -1,0 +1,39 @@
+name: Secure Deployment Pipeline
+
+on:
+  push:
+    branches: [ workflow_dispatch ]
+
+jobs:
+  # 1. Integration & Security Check
+  security-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit Dependencies
+        run: npm audit
+
+  # 2. Deploy to Staging (Automatic)
+  deploy-staging:
+    needs: security-audit
+    environment: staging # Uses secrets defined in the 'staging' environment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Staging Server
+        run: |
+          echo "Connecting to ${{ vars.API_URL }}..."
+          # The secret is masked automatically in logs
+          curl -X POST ${{ vars.API_URL }}/deploy \
+            -H "Authorization: Bearer ${{ secrets.MY_API_TOKEN }}"
+
+  # 3. Deploy to Production (Requires Manual Approval in GitHub UI)
+  deploy-production:
+    needs: deploy-staging
+    environment: production # Uses secrets defined in the 'production' environment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Production Server
+        run: |
+          echo "Deploying to Production: ${{ vars.API_URL }}"
+          curl -X POST ${{ vars.API_URL }}/deploy \
+            -H "Authorization: Bearer ${{ secrets.MY_API_TOKEN }}"

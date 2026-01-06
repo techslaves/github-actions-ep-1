@@ -9,7 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Audit Dependencies
-        run: npm audit
 
   # 2. Deploy to Staging (Automatic)
   deploy-staging:

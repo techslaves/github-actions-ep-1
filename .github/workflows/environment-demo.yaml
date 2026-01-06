@@ -20,7 +20,7 @@ jobs:
         run: |
           echo "Connecting to ${{ vars.API_URL }}..."
           # The secret is masked automatically in logs
-          echo "Bearer ${{ secrets.MY_API_KEY }}"
+          echo "Staging Server ${{ secrets.MY_API_KEY }}"
 
   # 3. Deploy to Production (Requires Manual Approval in GitHub UI)
   deploy-production:
@@ -31,4 +31,4 @@ jobs:
       - name: Deploy to Production Server
         run: |
           echo "Deploying to Production: ${{ vars.API_URL }}"
-          echo "Bearer ${{ secrets.MY_API_KEY }}"
+          echo "Production ${{ secrets.MY_API_KEY }}"

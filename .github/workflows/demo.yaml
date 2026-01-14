@@ -1,0 +1,22 @@
+name: GitHub token permission Demo
+on: [workflow_dispatch]
+  
+jobs:
+  leak-job:
+    runs-on: ubuntu-latest
+    steps:   
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Leak via Character Splitting
+        run: |
+          # Configure Git
+          git config --global user.name "Security-Bot"
+          git config --global user.email "bot@example.com"
+          
+          echo "Welcome to TechHustleWithUG" > sample.txt
+          
+          # Push to the repository
+          git add sample.txt
+          git commit -m "[Skip CI] demo commit"
+          git push
